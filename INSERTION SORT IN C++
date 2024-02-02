@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+void insertionsot(int arr[], int n)
+{
+
+    for (int  i = 1; i < n; i++)
+    {
+        int current = arr[i];
+        int j = i - 1 ;
+        while (arr[j] > current &&  j>=0)
+        {
+            arr[j+1] = arr[j];
+            j--;
+
+        }
+        arr[j+1]=current;
+        
+    }
+    
+}
+int main()
+
+{
+    system("cls");
+    int n;
+    cout << "ENTER THE SIZE OF ARRAY : ";
+    cin >> n;
+
+   
+    cout << "ENTER THE ELMENT OF ARRAY : ";
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+
+        cin >> arr[i];
+    }
+
+    insertionsot(arr, n);
+
+    cout << "By  insertion Method The  sorted array : " << endl;
+
+    for (int i = 0; i < n; i++)
+    {
+
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
+
+    return 0;
+}
