@@ -1,0 +1,427 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+int ascii =259;
+char ch = ascii;
+
+class Bookshop
+{
+private:
+    struct Book
+    {
+        int id;
+        string name, author_name, publisher_name;
+        float price;
+        Book *next; // Pointer to the next book in the linked list
+    };
+
+    Book *head; // Head of the linked list
+
+public:
+    Bookshop() : head(nullptr) {}
+
+    void Heading()
+    {
+        cout << " ";
+        for (int deign = 1; deign < 26; deign++)
+            cout << ch;
+        cout << " BOOK SHOP PROJECT IN C++ ";
+        for (int deign = 1; deign < 26; deign++)
+            cout << ch;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << "  " << ch << ch << " 1. INSERT BOOK " << endl;
+        cout << "  " << ch << ch << " 2. SEARCH BOOK " << endl;
+        cout << "  " << ch << ch << " 3. UPDATE BOOK " << endl;
+        cout << "  " << ch << ch << " 4. DELETE BOOK " << endl;
+        cout << "  " << ch << ch << " 5. SHOW ALL BOOK " << endl;
+        cout << "  " << ch << ch << " 6. EXIT BOOK " << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << "  ";
+        for (int deign = 1; deign < 56; deign++)
+            cout << ch;
+    }
+
+    void Insert()
+    {
+        system("cls");
+        Heading();
+        cout << endl;
+        cout << endl;
+        cout << endl;
+
+        Book *newBook = new Book;
+        cout << "   ENTER THE BOOK ID -> ";
+        cin >> newBook->id;
+        cout << "   ENTER THE BOOK NAME -> ";
+        cin >> newBook->name;
+        cout << "   ENTER THE AUTHOR NAME  -> ";
+        cin >> newBook->author_name;
+        cout << "   ENTER THE BOOK PUBLISHER NAME -> ";
+        cin >> newBook->publisher_name;
+        cout << "   SET THE PRICE OF BOOK -> ";
+        cin >> newBook->price;
+        newBook->next = nullptr;
+
+        if (!head)
+        {
+            head = newBook;
+        }
+        else
+        {
+            Book *temp = head;
+            while (temp->next)
+            {
+                temp = temp->next;
+            }
+            temp->next = newBook;
+        }
+
+        cout << endl;
+        cout << "    " << ch << ch << " THE BOOK RECORD IS SUCCESSFULLY STORED  " << ch << ch << endl
+             << endl;
+        cout << "              " << ch << ch << ch << " THANK YOU " << ch << ch << ch << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+    }
+
+    void search()
+    {
+        system("cls");
+        Heading();
+        cout << endl;
+        cout << endl;
+        cout << endl;
+
+        if (!head)
+        {
+            cout << "    " << ch << ch << " BOOKS STORE IS EMPTY  " << ch << ch << endl;
+            cout << endl;
+            cout << endl;
+            cout << endl;
+        }
+        else
+        {
+            int found = 0;
+            string t_n;
+            cout << "    ENTER THE PARTIAL BOOK NAME FOR SEARCH -> ";
+            cin >> t_n;
+            cout << endl;
+            cout << endl;
+            Book *temp = head;
+            while (temp)
+            {
+
+                if (temp->name.find(t_n) != string::npos)
+                {
+                    cout << "  BOOK ID NO : " << temp->id << endl;
+                    cout << "  BOOK NAME : " << temp->name << endl;
+                    cout << "  BOOK AUTHOR NAME : " << temp->author_name << endl;
+                    cout << "  BOOK PUBLISHER NAME : " << temp->publisher_name << endl;
+                    cout << "  BOOK PRICE : " << temp->price << endl;
+                    for (int deign = 1; deign < 26; deign++)
+                        cout << ch;
+                    cout << endl;
+                    found++;
+                }
+                temp = temp->next;
+            }
+
+            cout << endl;
+            cout << endl;
+            cout << endl;
+            if (found == 0)
+            {
+                cout << "    " << ch << ch << " NO BOOKS FOUND WITH THE GIVEN PARTIAL NAME " << ch << ch << endl;
+            }
+            cout << endl;
+            cout << endl;
+            cout << endl;
+        }
+    }
+
+    void update_book()
+    {
+        system("cls");
+        Heading();
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        if (!head)
+        {
+            cout << endl;
+            cout << "     " << ch << ch << " BOOKS STORE IS EMPTY  " << ch << ch << endl;
+        }
+        else
+        {
+            int found = 0;
+            int t_id;
+            cout << "   ENTER THE BOOK ID NUMBER FOR SEARCH THE BOOK -> ";
+            cin >> t_id;
+            cout << endl;
+            Book *temp = head;
+            while (temp)
+            {
+                if (t_id == temp->id)
+                {
+                    cout << "   ENTER THE BOOK NAME -> ";
+                    cin >> temp->name;
+                    cout << "   ENTER THE AUTHOR NAME  -> ";
+                    cin >> temp->author_name;
+                    cout << "   ENTER THE BOOK PUBLISHER NAME -> ";
+                    cin >> temp->publisher_name;
+                    cout << "   SET THE PRICE OF BOOK -> ";
+                    cin >> temp->price;
+                    cout << endl;
+                    cout << endl;
+                    cout << endl;
+                    cout << "    " << ch << ch << " BOOK RECORD IS SUCCESSFULLY UPDATE " << ch << ch << endl
+                         << endl;
+                    cout << "              " << ch << ch << ch << " THANK YOU  " << ch << ch << ch << endl;
+                    found++;
+                    break;
+                }
+                temp = temp->next;
+            }
+            cout << endl;
+            cout << endl;
+            cout << endl;
+            if (found == 0)
+            {
+                cout << "     " << ch << ch << " THE BOOK ID IS NOT FOUND " << ch << ch << endl;
+            }
+            cout << endl;
+            cout << endl;
+            cout << endl;
+        }
+    }
+
+    void Delete_book()
+    {
+        system("cls");
+        Heading();
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        if (!head)
+        {
+            cout << endl;
+            cout << "   " << ch << ch << " BOOKS STORE IS EMPTY " << ch << ch << endl;
+        }
+        else
+        {
+            int found = 0;
+            int t_id;
+            cout << "    ENTER THE BOOK ID NUMBER FOR DELETE THE BOOK -> ";
+            cin >> t_id;
+            Book *prev = nullptr;
+            Book *curr = head;
+            while (curr)
+            {
+                if (t_id == curr->id)
+                {
+                    if (prev)
+                    {
+                        prev->next = curr->next;
+                    }
+                    else
+                    {
+                        head = curr->next;
+                    }
+                    delete curr;
+                    cout << endl;
+                    cout << endl;
+                    cout << endl;
+                    cout << "        " << ch << ch << " BOOK DELETE SUCCESSFULLY " << ch << ch << endl
+                         << endl;
+                    cout << "            " << ch << ch << ch << " THANK YOU " << ch << ch << ch << endl;
+                    found++;
+                    break;
+                }
+                prev = curr;
+                curr = curr->next;
+            }
+            cout << endl;
+            cout << endl;
+            cout << endl;
+            if (found == 0)
+            {
+                cout << "    " << ch << ch << " THE BOOK ID IS NOT FOUND " << ch << ch << endl;
+            }
+            cout << endl;
+            cout << endl;
+            cout << endl;
+        }
+    }
+
+    void Show_book()
+    {
+        system("cls");
+        Heading();
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        if (!head)
+        {
+            cout << endl;
+            cout << "   " << ch << ch << " BOOKS STORE IS EMPTY  " << ch << ch << endl;
+        }
+        else
+        {
+            Book *temp = head;
+            while (temp)
+            {
+                cout << "  BOOK ID NO : " << temp->id << endl;
+                cout << "  BOOK NAME : " << temp->name << endl;
+                cout << "  BOOK AUTHOR NAME : " << temp->author_name << endl;
+                cout << "  BOOK PUBLISHER NAME : " << temp->publisher_name << endl;
+                cout << "  BOOK PRICE : " << temp->price << endl;
+                cout << endl;
+                cout << endl;
+                cout << endl;
+                cout << "  ";
+                for (int deign = 1; deign < 26; deign++)
+                {
+                    cout << ch;
+                }
+                cout << endl;
+                cout << endl;
+                cout << endl;
+                cout << endl;
+                temp = temp->next;
+            }
+        }
+    }
+};
+
+int main()
+{
+    Bookshop bookshop;
+point:
+    system("cls");
+    cout << " ";
+    for (int deign = 1; deign < 56; deign++)
+        cout << ch;
+    cout << " LOGIN PAGE ";
+    for (int deign = 1; deign < 56; deign++)
+        cout << ch;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+    string setUsername = "Shayan";
+    string setPassword = "1234";
+
+    string EUsername, EPassword;
+
+    cout << "   ENTER YOUR USERNAME: ";
+    cin >> EUsername;
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    for (int deign = 1; deign < 56; deign++)
+        cout << ch;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+    cout << "    ENTER YOUR PASSWORD: ";
+    cin >> EPassword;
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+    if (setUsername == EUsername && setPassword == EPassword)
+    {
+        cout << "                    ";
+        for (int deign = 1; deign < 30; deign++)
+            cout << ch;
+        cout << " LOGIN SUCCESSFUL!" << endl;
+        for (int deign = 1; deign < 30; deign++)
+            cout << ch;
+    }
+    else
+    {
+        cout << "                     ";
+        for (int deign = 1; deign < 20; deign++)
+            cout << ch;
+        cout << " LOGIN FAILED ! PLEASE CHECK YOUR USERNAME OR PASSWORD ";
+        for (int deign = 1; deign < 20; deign++)
+            cout << ch;
+        cout << endl;
+        cout << endl;
+        return 0;
+    }
+
+    system("cls");
+    cout << endl;
+    cout << endl;
+    cout << endl;
+    for (int deign = 1; deign < 56; deign++)
+        cout << ch;
+    cout << " WELCOME TO YOUR BOOK STORE ";
+    for (int deign = 1; deign < 56; deign++)
+        cout << ch;
+    cout << endl;
+    cout << endl;
+
+    int choice;
+    bookshop.Heading();
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+    cout << " " << ch << ch << "  ENTER YOUR CHOICE -> ";
+    cin >> choice;
+    cout << endl;
+    cout << endl;
+
+    while (true)
+    {
+        switch (choice)
+        {
+        case 1:
+            bookshop.Insert();
+            break;
+        case 2:
+            bookshop.search();
+            break;
+        case 3:
+            bookshop.update_book();
+            break;
+        case 4:
+            bookshop.Delete_book();
+            break;
+        case 5:
+            bookshop.Show_book();
+            break;
+        case 6:
+            exit(0);
+
+        default:
+            cout << "   " << ch << ch << " PLEASE SELECT THE CORRECT OPTION " << ch << ch << endl;
+        }
+
+        cout << " " << ch << ch << "  ENTER YOUR CHOICE -> ";
+        cin >> choice;
+        cout << endl;
+        cout << endl;
+    }
+
+    getch();
+    goto point;
+    return 0;
+}
