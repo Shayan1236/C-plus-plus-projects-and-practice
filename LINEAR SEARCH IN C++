@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+int linearsearch(int array[], int n, int key)
+{
+
+  for (int i = 0; i < n; i++)
+  {
+
+    if (array[i] == key)
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}
+int main()
+{
+  system("cls");
+  cout << "<------------------------------------------------->" << endl;
+  cout << "             LINEAR SEARCH IN ARRAY " << endl;
+  cout << "<------------------------------------------------->" << endl;
+  int n;
+  cout << "Enter The size of array :";
+  cin >> n;
+  cout << endl;
+  cout << endl;
+
+  cout << "Enter the Elments of array :";
+  int array[n];
+
+  for (int i = 0; i < n; i++)
+  {
+
+    cin >> array[i];
+  }
+  cout << endl;
+  cout << endl;
+  
+  int key;
+  cout << "Enter the key to find index of  number :  ";
+  cin >> key;
+  cout << endl;
+  cout << endl;
+
+
+  cout << " Your Number on index  is : ";
+  cout << linearsearch(array, n, key) << endl;
+  cout << endl;
+
+  return 0;
+}
